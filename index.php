@@ -4,6 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
+
 if(isset($_POST['d']))
 {
   $txt = $_POST['d'];
@@ -11,9 +12,10 @@ if(isset($_POST['d']))
   $datfile = fopen("todo.txt", "w") or die("Unable to open file!");
   fwrite($datfile, $txt);
   fclose($datfile);
+  $path = get_path();
   $dat = file_get_contents("todo.txt");
   echo '<html>
-  <form action="/index.php" method="post">
+  <form action="'.$path.'/index.php" method="post">
   <textarea id="d" name="d" rows="40" cols="500">
    '.$dat.'
   </textarea><br>
@@ -26,9 +28,9 @@ if(isset($_POST['d']))
 else
 {
   $dat = file_get_contents("todo.txt");
-
+  $path = get_path();
   echo '<html>
-  <form action="/index.php" method="post">
+  <form action="'.$path.'/index.php" method="post">
   <textarea id="d" name="d" rows="40" cols="500">
    '.$dat.'
   </textarea>
@@ -41,9 +43,8 @@ else
 
 
 
-function base_url()
-{
-  return dirname($_SERVER['SCRIPT_FILENAME']);
+function get_path($Protocol='https://') {
+   return $Protocol.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(__DIR__));
 }
 
 
