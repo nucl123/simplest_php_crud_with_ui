@@ -3,7 +3,7 @@ Simplest Crud in PHP with Basic UI
 
 Todo:
 - [x] Better UI
-- [] Keyvalue Store
+- [ ] Keyvalue Store
 - [ ] Simple User Sessions and Authentication
 - [ ] DB CRUD (Firebase,Mysql)
 - [ ] API Access
